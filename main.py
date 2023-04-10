@@ -6,6 +6,11 @@ from langchain.chains import LLMChain
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage, AIMessage
 from langchain.schema import Document
+from langchain.document_loaders import TextLoader
+from langchain.indexes import VectorstoreIndexCreator
+
+
+
 
 chat = ChatOpenAI(temperature=.7, openai_api_key=openAI_API_KEY)
 
@@ -21,9 +26,11 @@ llm = OpenAI(temperature=0.8)
 
 text = "what are 5 vacation destinations for someone who likes to eat sushi"
 print(llm(text))
+'''
 
 
 # @@@@@@ chains ! @@@@@@@
+'''
 
 # in here we are making a template of the prompt and changing the values that is the main
 # part of the question
@@ -42,15 +49,13 @@ print(llm(prompt.format(food="dessert")))
 chain = LLMChain(llm=llm,prompt=prompt)
 print(chain.run("fruit"))
 '''
-'''
-  
-Chat Messages
-Like text, but specified with a message type (System, Human, AI)
 
-System - Helpful background context that tell the AI what to do
-Human - Messages that are intented to represent the user
-AI - Messages that show what the AI responded with
-'''
+
+
+
+
+
+
 
 
 
@@ -60,6 +65,13 @@ AI - Messages that show what the AI responded with
 
 # in this example you can see that we can have pre conversation with as a chat so we could build him
 # according to our requirements
+
+# Chat Messages
+# Like text, but specified with a message type (System, Human, AI)
+#
+# System - Helpful background context that tell the AI what to do
+# Human - Messages that are intented to represent the user
+# AI - Messages that show what the AI responded with
 '''
 
 messages = [
@@ -84,5 +96,3 @@ conversation = [
 response = chat(conversation)
 print(response.content)
 '''
-
-
